@@ -38,7 +38,8 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
       user_name: '',
       user_phone: '',
       user_email: '',
-      expected_response:''
+      expected_response:'',
+      showSubmit:false
     };
 
 
@@ -59,7 +60,7 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
             <li>Attempt all questions</li>
             <li>You will be able to get your result after submitting your response</li>
             <li>After clicking continue , you will not be able to come back to this screen</li>
-            <li>There will not be any negative marking, so attempt all questions</li>
+            <li>There will be no negative marking, so attempt all questions</li>
           </ul>
           <h3>Note: </h3>
           <p>We hope you have a pleasant experience and in case of any query feel free to call Hadi Mahmood</p>
@@ -73,15 +74,15 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
             <h2>Time Lapse Quiz</h2>
             <form action="#" method="post">
               <div className="container-quiz">
-                {/* <!-- Text Input --> */}
+                {/* <!-- User Informarion --> */}
                 <label htmlFor="name">Name:</label>
-                <input type="text" id="name" className="blank-style" name="name" pattern="[A-Za-z\s]{1,}" required />
+                <input type="text" id="name" className="blank-style" name="name" pattern="[A-Za-z\s]{1,}" value={this.state.user_name} onChange={this.setName} required />
                 <br /> <br />
                 <label htmlFor="email">Email:</label>
-                <input type="text" id="email" className="blank-style" name="email"  pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+                <input type="email" id="email" className="blank-style" name="email" value = {this.state.user_email} onChange={this.setEmail} required />
                 <br /> <br />
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" className="blank-style" name="phoneNumber"  pattern="\+?[0-9]{1,14}" required />
+                <input type="tel" id="phoneNumber" className="blank-style" name="phoneNumber" value={this.state.user_phone} pattern="\+?[0-9]{1,14}" onChange={this.setPhoneNumber} required />
                 <br /> <br />
               </div>
               <h2>Part 1</h2>
@@ -138,7 +139,8 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
                 </ol>
               </div>
               {/* <!-- Submit Button --> */}
-              <input type="submit" className="button" onClick={() => this.moveToEnd()} value="Submit" />
+              <b>Enter All Values to see the Submit Button</b><br/>
+              {this.state.showSubmit && <input type="submit" className="button" onClick={() => this.moveToEnd()} value="Submit" />}
             </form>
           </div>
         </section>}
@@ -162,25 +164,76 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
  
   // Event handler for the number input
   handleBeforeBdDate = (event: any) => {
-    this.setState({ selected_before_bd: event.target.value });
+    this.setState({ selected_before_bd: event.target.value },()=>{
+      this.checkItemDataEntered();
+    });
   }
   handleAfterBdDate = (event: any) => {
-    this.setState({ selected_after_bd: event.target.value });
+    this.setState({ selected_after_bd: event.target.value },()=>{
+      this.checkItemDataEntered();
+    });
   }
   handleBeforeBdDays = (event: any) => {
-    this.setState({ before_birthdays: event.target.value });
+    this.setState({ before_birthdays: event.target.value },()=>{
+      this.checkItemDataEntered();
+    });
   }
   handleAfterBdDays = (event: any) => {
-    this.setState({ after_birthdays: event.target.value });
+    this.setState({ after_birthdays: event.target.value },()=>{
+      this.checkItemDataEntered();
+    });
   }
   handleSelectionChange_DayYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ selectedDay_DayYearChange: event.target.value }, () => {
-
+      this.checkItemDataEntered();
     });
   }
+
+  setEmail = (event: { target: { value: any; }; }) => {
+    this.setState({user_email:event.target.value}, () => {
+      this.checkItemDataEntered();
+    });
+  }
+
+  setName = (event: { target: { value: any; }; }) => {
+    this.setState({user_name:event.target.value}, () => {
+this.checkItemDataEntered();
+    });
+  }
+
+
+  setPhoneNumber = (event: { target: { value: any; }; }) => {
+    this.setState({user_phone:event.target.value}, () => {
+      this.checkItemDataEntered();
+    });
+  }
+
+  checkItemDataEntered=()=>{
+
+    if(this.state.user_name.toString().length > 0 && 
+                this.state.user_email.toString().length > 0 &&
+                this.state.user_phone.toString().length > 0 &&
+                this.state.selectedDay_DayYearChange.toString().length> 0 &&
+                this.state.selected_AmsterdamLosAngles.toString().length>0 &&
+                this.state.selected_before_bd.toString().length>0 &&
+                this.state.selected_after_bd.toString().length>0 &&
+                this.state.before_birthdays.toString().length>0 &&
+                this.state.after_birthdays.toString().length>0)
+
+                {
+                  this.setState({showSubmit:true})
+                }
+
+                else{
+                    this.setState({showSubmit:false})
+                }
+
+  }
+
+
   handleTimeZoneConversion = (event: any) => {
     this.setState({ selected_AmsterdamLosAngles: event.target.value }, () => {
-
+      this.checkItemDataEntered();
     });
   }
   moveToQuiz(): void {
@@ -223,7 +276,7 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
     await this.countDaysBeforeBirthday(this.state.selected_before_bd, this.state.before_birthdays);
     await this.countDaysAfterBirthday(this.state.selected_after_bd, this.state.after_birthdays);
     await this.createListItem();
-    console.log("total ")
+    console.log("total ",this.state.correct_answers,this.state.wrong_answers)
   }
 
   moveToHome(): void {
@@ -311,11 +364,19 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
 */
 
 
+
+
 private createListItem = async () => {
   console.log("Inside the createListItem");
 
    sp.web.lists.getByTitle("ReizTechTimeQuiz").items.add({
-    Title: "Hello"
+    Title: "Sample",
+    Name:this.state.user_name,
+    Email:this.state.user_email,
+    PhoneNumber:this.state.user_phone,
+    UserResponse:this.state.user_responses,
+    ExpectedResponse:this.state.expected_response
+
   }).then(() => {
     console.log("Item Added Successfully");
   }).catch(error => {

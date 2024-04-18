@@ -18,6 +18,7 @@ export interface IReactPartialStateUpdateState {
     user_phone:string;
     user_email:string;
     user_name:string;
-    expected_response:string
+    expected_response:string,
+    showSubmit:boolean
 
 }  
