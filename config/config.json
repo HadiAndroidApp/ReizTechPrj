@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "reiz-tech-prj-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reizTechPrj/ReizTechPrjWebPart.js",
+          "manifest": "./src/webparts/reizTechPrj/ReizTechPrjWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ReizTechPrjWebPartStrings": "lib/webparts/reizTechPrj/loc/{locale}.js"
+  }
+}

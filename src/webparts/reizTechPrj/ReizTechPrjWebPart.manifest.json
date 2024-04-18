@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "538720b9-318d-4e8a-80de-065c16335e24",
+  "alias": "ReizTechPrjWebPart",
+  "componentType": "WebPart",
+
+
+  "version": "*",
+  "manifestVersion": 2,
+
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", 
+    "group": { "default": "Advanced" },
+    "title": { "default": "reiz-tech-prj" },
+    "description": { "default": "reiz-tech-prj description" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "reiz-tech-prj"
+    }
+  }]
+}

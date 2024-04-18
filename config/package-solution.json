@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "reiz-tech-prj-client-side-solution",
+    "id": "a04747bc-3532-4c46-bcf5-e1f88455a395",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "reiz-tech-prj description"
+      },
+      "longDescription": {
+        "default": "reiz-tech-prj description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "reiz-tech-prj Feature",
+        "description": "The feature that activates elements of the reiz-tech-prj solution.",
+        "id": "b3adf81b-dc82-4eeb-9b46-31fcbf6b0973",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/reiz-tech-prj.sppkg"
+  }
+}
