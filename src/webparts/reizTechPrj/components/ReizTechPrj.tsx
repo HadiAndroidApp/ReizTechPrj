@@ -308,9 +308,13 @@ this.checkItemDataEntered();
     try {
       const responseData= await timeProxyCallWithBody(fullUrl,TIME_CONVERSION_DATA)
       if (responseData.time == selectedDay) {   
-        this.setState({ correct_answers: this.state.correct_answers + 1 });
+        this.setState({ correct_answers: this.state.correct_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}` })
+        this.setState({expected_response:`${this.state.expected_response} A1: ${responseData.time} `})
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1 });
+        this.setState({ wrong_answers: this.state.wrong_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}`})
+        this.setState({expected_response:`${this.state.expected_response} A1: ${responseData.time}`  })
       }
     } catch (error) {
       console.error('Error fetching time:', error);
@@ -502,9 +506,13 @@ private createListItem(): void {
       const data = await timeProxyCall(this.props.context,fullUrl);
       if (data.dayOfWeek == selectedDay) {
 
-        this.setState({ correct_answers: this.state.correct_answers + 1,user_responses:`${this.state.user_responses} Q1: ${selectedDay}` ,expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek} `})
+        this.setState({ correct_answers: this.state.correct_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}` })
+        this.setState({expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek} `})
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1,user_responses:`${this.state.user_responses} Q1: ${selectedDay}` ,expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek}`  })
+        this.setState({ wrong_answers: this.state.wrong_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}`})
+        this.setState({expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek}`  })
       }
 
     }
@@ -522,9 +530,13 @@ private createListItem(): void {
     try {
       const data = await timeProxyCall(this.props.context,fullUrl);
       if (parseInt(data.day) === parseInt(selectedDay)) {
-        this.setState({ correct_answers: this.state.correct_answers + 1,user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}`,expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ correct_answers: this.state.correct_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1,user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}` ,expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}` });
+        this.setState({ wrong_answers: this.state.wrong_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}` });
       }
     } catch (error) {
       console.error('Error fetching time:2', error);
@@ -543,9 +555,13 @@ private createListItem(): void {
       const data = await timeProxyCall(this.props.context,fullUrl);
 
       if ((YEAR_DAY_COUNT - parseInt(data.day)) == parseInt(selectedDay)) {
-        this.setState({ correct_answers: this.state.correct_answers + 1,user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`,expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ correct_answers: this.state.correct_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1,user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`,expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ wrong_answers: this.state.wrong_answers + 1})
+        this.setState({user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       }
     }
     catch (error: any) {
