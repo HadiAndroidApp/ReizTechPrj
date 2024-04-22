@@ -261,7 +261,7 @@ this.checkItemDataEntered();
 
 
   async moveToEnd() {
-    console.log("moveToEnd");
+
     this.setState({
       showWelcome: false,
       showQuiz: false,
@@ -272,11 +272,10 @@ this.checkItemDataEntered();
     await this.countDaysBeforeBirthday(this.state.selected_before_bd, this.state.before_birthdays);
     await this.countDaysAfterBirthday(this.state.selected_after_bd, this.state.after_birthdays);
     await this.createListItem();
-    console.log("total ",this.state.correct_answers,this.state.wrong_answers)
+  
   }
 
   moveToHome(): void {
-    console.log("Go to Home");
     this.setState({
       showWelcome: true,
       showQuiz: false,
@@ -320,7 +319,7 @@ this.checkItemDataEntered();
 
 
 private createListItem = async () => {
-  console.log("Inside the createListItem");
+
 
    sp.web.lists.getByTitle("ReizTechTimeQuiz").items.add({
     Title: "Sample",
