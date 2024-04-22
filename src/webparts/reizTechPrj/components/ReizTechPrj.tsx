@@ -6,10 +6,6 @@ require('./Styles/customCSS.css');
 import {timeProxyCall,timeProxyCallWithBody,currentDateFunction} from '../common/common';
 import { proxlURL, TimeIO_URL,YEAR_DAY_COUNT,DATE_TO_DAY,TIME_CONVERSION_DATA } from '../common/constant';
 
-// import { ISPHttpClientOptions, SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
-
-// import { SPHttpClient } from '@microsoft/sp-http';
-
 
 import {sp} from "@pnp/sp"
 
@@ -321,53 +317,6 @@ this.checkItemDataEntered();
     }
   };
      
-  
-
-/*
-  private createListItem=async() => {
-    const listName = "ReizTechTimeQuiz"; 
-    const webUrl = this.props.context.pageContext.web.absoluteUrl; 
-    console.log("ffff",webUrl)
-    const apiUrl = `${webUrl}/_api/web/lists/getbytitle('${listName}')/items`;
-  console.log("rlkrlklrkrlkrl",apiUrl)
-    const itemBody: any = {
-      Title: "New Item Title",
-      Name:this.props.context.pageContext.user.displayName,
-      UserResponse:this.state.user_responses,
-      ExpectedResponse:this.state.expected_response,
-      PhoneNumber:this.state.user_phone,
-      Email:this.state.user_email
-    };
-    console.log("Sent List Item",itemBody);
-  
-    const spHttpClientOptions: ISPHttpClientOptions = {
-      body: JSON.stringify(itemBody),
-      headers: {
-        'Accept': 'application/json;odata=nometadata',
-        'Content-type': 'application/json;odata=verbose',
-        'odata-version': ''
-      }
-    };
-  
-    await this.props.context.spHttpClient.post(apiUrl, SPHttpClient.configurations.v1, spHttpClientOptions)
-      .then((response: SPHttpClientResponse) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error("Failed to create list item.");
-        }
-      })
-      .then((item: any) => {
-        console.log("Item successfully created:", item);
-      })
-      .catch((error) => {
-        console.error("Item not created:", error);
-      });
-  }
-
-*/
-
-
 
 
 private createListItem = async () => {
@@ -387,112 +336,6 @@ private createListItem = async () => {
     console.error("Error adding item: ", error);
   });
 }
-
-/*
-private createListItem(): void {
-  const listName: string = "ReizTechTimeQuiz";  // Update 'YourListName' with your actual list name
-  const webUrl: string = this.props.context.pageContext.web.absoluteUrl;
-  const apiUrl: string = `${webUrl}/_api/web/lists/getByTitle('${listName}')/items`;
-  const itemBody: any = {
-    __metadata: { 'type': `SP.Data.ReizTechTimeQuizListItem` },  // Update ListItem entity type if necessary
-    Title: "New Item Title"  // Example field, update with actual data fields
-  };
-
-  const spHttpClientOptions: SPHttpClientConfiguration = {
-    headers: {
-      'Accept': 'application/json;odata=nometadata',
-      'Content-type': 'application/json;odata=verbose',
-      'odata-version': '',
-      'IF-MATCH': '*',
-      'X-HTTP-Method': 'POST'
-    },
-    body: JSON.stringify(itemBody)
-  };
-
-  this.props.context.spHttpClient.post(apiUrl, SPHttpClient.configurations.v1, spHttpClientOptions)
-    .then((response: SPHttpClientResponse) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Network response was not ok.");
-      }
-    })
-    .then((item: any) => {
-      console.log(`Item '${item.Title}' (ID: ${item.Id}) successfully created`);
-    })
-    .catch((error) => {
-      console.error("Error creating item:", error);
-    });
-}*/
-
-
-
-
-
-
-// private createListItem = async () => {
-// console.log("Inside the createListITem");
-//   await sp.web.lists.getByTitle("ReizTechTimeQuiz").items.add({
-//     Title:"Hello"
-
-//   }).then(()=>{
-//     console.log("Item Added Successfully")
-//   });
-// }
-
-
-//   const listName = "ReizTechTimeQuiz";
-//   const webUrl = this.props.context.pageContext.web.absoluteUrl;
-//   const apiUrl = `${webUrl}/_api/web/lists/getbytitle('${listName}')/items`;
-
-//   // Fetch ListItemEntityTypeFullName for the list
-//   const listItemEntityTypeFullName = await this.fetchListItemEntityTypeFullName(listName);
-
-//   const itemBody = {
-//     __metadata: { type: listItemEntityTypeFullName }, // Use the fetched ListItemEntityTypeFullName
-//     Title: "New Item Title",
-//     Name: this.props.context.pageContext.user.displayName,
-//     UserResponse: this.state.user_responses,
-//     ExpectedResponse: this.state.expected_response,
-//     PhoneNumber: this.state.user_phone,
-//     Email: this.state.user_email
-//   };
-
-//   const spHttpClientOptions = {
-//     body: JSON.stringify(itemBody),
-//     headers: {
-//       'Accept': 'application/json;odata=verbose',  // Consistent with Content-type
-//       'Content-type': 'application/json;odata=verbose',
-//     }
-//   };
-
-//   try {
-//     const response = await this.props.context.spHttpClient.post(apiUrl, SPHttpClient.configurations.v1, spHttpClientOptions);
-//     const data = await response.json();
-//     if (!response.ok) {
-//       throw new Error(data.error ? data.error.message.value : 'Failed to create list item');
-//     }
-//     console.log("Item successfully created:", data);
-//   } catch (error) {
-//     console.error("Item not created:", error);
-//   }
-// };
-
-// private fetchListItemEntityTypeFullName = async (listName: string) => {
-//   const webUrl = this.props.context.pageContext.web.absoluteUrl;
-//   const apiUrl = `${webUrl}/_api/web/lists/getbytitle('${listName}')?$select=ListItemEntityTypeFullName`;
-
-//   const response = await this.props.context.spHttpClient.get(apiUrl, SPHttpClient.configurations.v1, {
-//     headers: { 'Accept': 'application/json;odata=verbose' }
-//   });
-
-//   const data = await response.json();
-//   if (!response.ok) {
-//     throw new Error(data.error ? data.error.message.value : 'Failed to fetch ListItemEntityTypeFullName');
-//   }
-
-//   return data.d.ListItemEntityTypeFullName;
-// }
 
 
 
