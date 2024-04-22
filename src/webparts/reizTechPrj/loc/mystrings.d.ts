@@ -13,7 +13,7 @@ declare interface IReizTechPrjWebPartStrings {
   UnknownEnvironment: string;
 }
 
-declare module 'ReizTechPrjWebPartStrings' {
+declare module "ReizTechPrjWebPartStrings" {
   const strings: IReizTechPrjWebPartStrings;
   export = strings;
 }

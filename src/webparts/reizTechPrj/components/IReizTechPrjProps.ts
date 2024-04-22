@@ -6,5 +6,5 @@ export interface IReizTechPrjProps {
   environmentMessage: string;
   hasTeamsContext: boolean;
   userDisplayName: string;
-  context:WebPartContext;
+  context: WebPartContext;
 }
