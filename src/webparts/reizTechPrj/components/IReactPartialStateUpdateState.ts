@@ -6,19 +6,19 @@ export interface IReactPartialStateUpdateState {
     showQuiz:boolean;
     showEnd:boolean;
     currentTime:string;
-    user_responses:string;
-    correct_answers:number;
-    wrong_answers:number;
-    selectedDay_DayYearChange:string;
-    selected_AmsterdamLosAngles:string;
-    before_birthdays:number;
-    after_birthdays:number;
-    selected_before_bd:string;
-    selected_after_bd:string;
-    user_phone:string;
-    user_email:string;
-    user_name:string;
-    expected_response:string,
+    userResponses:string;
+    correctAnswers:number;
+    wrongAnswers:number;
+    selectedDayDayYearChange:string;
+    selectedAmsterdamLosAngles:string;
+    beforeBirthdays:number;
+    afterBirthdays:number;
+    selectedBeforeBd:string;
+    selectedAfterBd:string;
+    userPhone:string;
+    userEmail:string;
+    userName:string;
+    expectedResponse:string,
     showSubmit:boolean
 
 }  

@@ -18,23 +18,23 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
       currentDate: new Date(),
       randomNumber: 0,
 
-      correct_answers: 0,
-      wrong_answers: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
       showWelcome: true,
       showQuiz: false,
       showEnd: false,
       currentTime: "",
-      selectedDay_DayYearChange: 'Monday',
-      selected_AmsterdamLosAngles: '00:00',
-      selected_after_bd:  currentDateFunction(),
-      selected_before_bd: currentDateFunction(),
-      before_birthdays: 0,
-      after_birthdays: 0,
-      user_responses: '',
-      user_name: '',
-      user_phone: '',
-      user_email: '',
-      expected_response:'',
+      selectedDayDayYearChange: 'Monday',
+      selectedAmsterdamLosAngles: '00:00',
+      selectedAfterBd:  currentDateFunction(),
+      selectedBeforeBd: currentDateFunction(),
+      beforeBirthdays: 0,
+      afterBirthdays: 0,
+      userResponses: '',
+      userName: '',
+      userPhone: '',
+      userEmail: '',
+      expectedResponse:'',
       showSubmit:false
     };
 
@@ -72,13 +72,13 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
               <div className="container-quiz">
                 {/* <!-- User Informarion --> */}
                 <label htmlFor="name">Name:</label>
-                <input type="text" id="name" className="blank-style" name="name" pattern="[A-Za-z\s]{1,}" value={this.state.user_name} onChange={this.setName} required />
+                <input type="text" id="name" className="blank-style" name="name" pattern="[A-Za-z\s]{1,}" value={this.state.userName} onChange={this.setName} required />
                 <br /> <br />
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" className="blank-style" name="email" value = {this.state.user_email} onChange={this.setEmail} required />
+                <input type="email" id="email" className="blank-style" name="email" value = {this.state.userEmail} onChange={this.setEmail} required />
                 <br /> <br />
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="tel" id="phoneNumber" className="blank-style" name="phoneNumber" value={this.state.user_phone} pattern="\+?[0-9]{1,14}" onChange={this.setPhoneNumber} required />
+                <input type="tel" id="phoneNumber" className="blank-style" name="phoneNumber" value={this.state.userPhone} pattern="\+?[0-9]{1,14}" onChange={this.setPhoneNumber} required />
                 <br /> <br />
               </div>
               <h2>Part 1</h2>
@@ -88,7 +88,7 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
                   <li>
                     <label>If 2021-03-14 is on Sunday what will be the day of the month considering same date, month but year 2025, i.e. the day on 2025-03-14?</label>
                     <br />
-                    <select id="DayYearChange" value={this.state.selectedDay_DayYearChange} onChange={this.handleSelectionChange_DayYearChange}>
+                    <select id="DayYearChange" value={this.state.selectedDay_DayYearChange} onChange={this.handleSelectionChangeDayYearChange}>
                       <option value="Monday">Monday</option>
                       <option value="Tuesday">Tuesday</option>
                       <option value="Wednesday">Wednesday</option>
@@ -119,7 +119,7 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
                 <ol>
                   <li>
                     <label>How many days have passed before your birthday in a year? Provided your birthday is</label>
-                    <input type="date" id="before_birthdate" onChange={this.handleBeforeBdDate} value={this.state.selected_before_bd} className="blank-style" placeholder="Birthdate" name="birthdate" required />
+                    <input type="date" id="beforeBirthdate" onChange={this.handleBeforeBdDate} value={this.state.selected_before_bd} className="blank-style" placeholder="Birthdate" name="birthdate" required />
                     <br /> <br />
                     <input type="number" onChange={this.handleBeforeBdDays} value={this.state.before_birthdays} className="blank-style" id="Days" placeholder="Enter your Answer" name="Days" required />
                     <br /> <br />
@@ -127,8 +127,8 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
                   {/* <!-- Additional list items for more questions --> */}
 
                   <li><label>How many days are left in a year after your birthday ? Provided your birthday is  </label>
-                    <input type="date" onChange={this.handleAfterBdDate} value={this.state.selected_after_bd} className="blank-style" id="after_birthdate" placeholder="Birthdate" name="birthdate" required /></li><br /><br />
-                  <input type="number" onChange={this.handleAfterBdDays} value={this.state.after_birthdays} className="blank-style" placeholder="Enter your Answer Day " id="Day for Birth" name="Day for Birth" required /><br /><br />
+                    <input type="date" onChange={this.handleAfterBdDate} value={this.state.selected_after_bd} className="blank-style" id="afterBirthdate" placeholder="Birthdate" name="birthdate" required /></li><br /><br />
+                  <input type="number" onChange={this.handleAfterBdDays} value={this.state.after_birthdays} className="blank-style" placeholder="Enter your Answer Day " id="DayForBirth" name="Day for Birth" required /><br /><br />
 
 
 
@@ -145,8 +145,8 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
         {this.state.showEnd === true && <div className="container-end">
           <h1>Quiz Completed!</h1>
           <p>Thank you for completing the quiz.</p>
-          <p>Your total correct answers are :{this.state.correct_answers} </p>
-          <p>Your wrong attempts are :{this.state.wrong_answers}</p>
+          <p>Your total correct answers are :{this.state.correctAnswers} </p>
+          <p>Your wrong attempts are :{this.state.wrongAnswers}</p>
 
 
           <a onClick={() => this.moveToHome()} className="button">Return to Home </a>
@@ -160,46 +160,46 @@ export default class ReizTechPrj extends React.Component<IReizTechPrjProps, IRea
  
   // Event handler for the number input
   handleBeforeBdDate = (event: any) => {
-    this.setState({ selected_before_bd: event.target.value },()=>{
+    this.setState({ selectedBeforeBd: event.target.value },()=>{
       this.checkItemDataEntered();
     });
   }
   handleAfterBdDate = (event: any) => {
-    this.setState({ selected_after_bd: event.target.value },()=>{
+    this.setState({ selectedAfterBd: event.target.value },()=>{
       this.checkItemDataEntered();
     });
   }
   handleBeforeBdDays = (event: any) => {
-    this.setState({ before_birthdays: event.target.value },()=>{
+    this.setState({ beforeBirthdays: event.target.value },()=>{
       this.checkItemDataEntered();
     });
   }
   handleAfterBdDays = (event: any) => {
-    this.setState({ after_birthdays: event.target.value },()=>{
+    this.setState({ afterBirthdays: event.target.value },()=>{
       this.checkItemDataEntered();
     });
   }
   handleSelectionChange_DayYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ selectedDay_DayYearChange: event.target.value }, () => {
+    this.setState({ selectedDayDayYearChange: event.target.value }, () => {
       this.checkItemDataEntered();
     });
   }
 
   setEmail = (event: { target: { value: any; }; }) => {
-    this.setState({user_email:event.target.value}, () => {
+    this.setState({userEmail:event.target.value}, () => {
       this.checkItemDataEntered();
     });
   }
 
   setName = (event: { target: { value: any; }; }) => {
-    this.setState({user_name:event.target.value}, () => {
+    this.setState({userName:event.target.value}, () => {
 this.checkItemDataEntered();
     });
   }
 
 
   setPhoneNumber = (event: { target: { value: any; }; }) => {
-    this.setState({user_phone:event.target.value}, () => {
+    this.setState({userPhone:event.target.value}, () => {
       this.checkItemDataEntered();
     });
   }
@@ -207,14 +207,14 @@ this.checkItemDataEntered();
   checkItemDataEntered=()=>{
 
     if(this.state.user_name.toString().length > 0 && 
-                this.state.user_email.toString().length > 0 &&
-                this.state.user_phone.toString().length > 0 &&
-                this.state.selectedDay_DayYearChange.toString().length> 0 &&
-                this.state.selected_AmsterdamLosAngles.toString().length>0 &&
-                this.state.selected_before_bd.toString().length>0 &&
-                this.state.selected_after_bd.toString().length>0 &&
-                this.state.before_birthdays.toString().length>0 &&
-                this.state.after_birthdays.toString().length>0)
+                this.state.userEmail.toString().length > 0 &&
+                this.state.userPhone.toString().length > 0 &&
+                this.state.selectedDayDayYearChange.toString().length> 0 &&
+                this.state.selectedAmsterdamLosAngles.toString().length>0 &&
+                this.state.selectedBeforeBd.toString().length>0 &&
+                this.state.selectedAfterBd.toString().length>0 &&
+                this.state.beforeBirthdays.toString().length>0 &&
+                this.state.afterBirthdays.toString().length>0)
 
                 {
                   this.setState({showSubmit:true})
@@ -228,7 +228,7 @@ this.checkItemDataEntered();
 
 
   handleTimeZoneConversion = (event: any) => {
-    this.setState({ selected_AmsterdamLosAngles: event.target.value }, () => {
+    this.setState({ selectedAmsterdamLosAngles: event.target.value }, () => {
       this.checkItemDataEntered();
     });
   }
@@ -243,13 +243,13 @@ this.checkItemDataEntered();
       selected_before_bd: currentDateFunction(),
       before_birthdays: 0,
       after_birthdays: 0,
-      user_responses: '',
+      userResponses: '',
       user_name: '',
       user_phone: '',
       user_email: '',
-      correct_answers: 0,
-      wrong_answers: 0,
-      expected_response:''
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      expectedResponse:''
     });
 
   }
@@ -267,10 +267,10 @@ this.checkItemDataEntered();
       showQuiz: false,
       showEnd: true
     });
-    await this.fetchDayOnDate(this.state.selectedDay_DayYearChange);
-    await this.convertTimeZone(this.state.selected_AmsterdamLosAngles);
-    await this.countDaysBeforeBirthday(this.state.selected_before_bd, this.state.before_birthdays);
-    await this.countDaysAfterBirthday(this.state.selected_after_bd, this.state.after_birthdays);
+    await this.fetchDayOnDate(this.state.selectedDayDayYearChange);
+    await this.convertTimeZone(this.state.selectedAmsterdamLosAngles);
+    await this.countDaysBeforeBirthday(this.state.selectedBeforeBd, this.state.beforeBirthdays);
+    await this.countDaysAfterBirthday(this.state.selectedAfterBd, this.state.afterBirthdays);
     await this.createListItem();
   
   }
@@ -280,19 +280,19 @@ this.checkItemDataEntered();
       showWelcome: true,
       showQuiz: false,
       showEnd: false,
-      selectedDay_DayYearChange: 'Monday',
-      selected_AmsterdamLosAngles: '00:00',
-      selected_after_bd:currentDateFunction(),
-      selected_before_bd: currentDateFunction(),
-      before_birthdays: 0,
-      after_birthdays: 0,
-      user_responses: '',
-      user_name: '',
-      user_phone: '',
-      user_email: '',
-      correct_answers: 0,
-      wrong_answers: 0,
-      expected_response:''
+      selectedDayDayYearChange: 'Monday',
+      selectedAmsterdamLosAngles: '00:00',
+      selectedAfterBd:currentDateFunction(),
+      selectedBeforeBd: currentDateFunction(),
+      beforeBirthdays: 0,
+      afterbirthdays: 0,
+      userResponses: '',
+      userName: '',
+      userPhone: '',
+      userEmail: '',
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      expectedResponse:''
     });
   }
 
@@ -303,13 +303,13 @@ this.checkItemDataEntered();
     try {
       const responseData= await timeProxyCallWithBody(fullUrl,TIME_CONVERSION_DATA)
       if (responseData.time == selectedDay) {   
-        this.setState({ correct_answers: this.state.correct_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}` })
-        this.setState({expected_response:`${this.state.expected_response} A1: ${responseData.time} `})
+        this.setState({ correctAnswers: this.state.correctAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q1: ${selectedDay}` })
+        this.setState({expectedResponse:`${this.state.expectedResponse} A1: ${responseData.time} `})
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}`})
-        this.setState({expected_response:`${this.state.expected_response} A1: ${responseData.time}`  })
+        this.setState({ wrongAnswers: this.state.wrongAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q1: ${selectedDay}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A1: ${responseData.time}`  })
       }
     } catch (error) {
       console.error('Error fetching time:', error);
@@ -323,11 +323,11 @@ private createListItem = async () => {
 
    sp.web.lists.getByTitle("ReizTechTimeQuiz").items.add({
     Title: "Sample",
-    Name:this.state.user_name,
-    Email:this.state.user_email,
-    PhoneNumber:this.state.user_phone,
-    UserResponse:this.state.user_responses,
-    ExpectedResponse:this.state.expected_response
+    Name:this.state.userName,
+    Email:this.state.userEmail,
+    PhoneNumber:this.state.userPhone,
+    UserResponse:this.state.userResponses,
+    ExpectedResponse:this.state.expectedResponse
 
   }).then(() => {
     console.log("Item Added Successfully");
@@ -348,13 +348,13 @@ private createListItem = async () => {
       const data = await timeProxyCall(this.props.context,fullUrl);
       if (data.dayOfWeek == selectedDay) {
 
-        this.setState({ correct_answers: this.state.correct_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}` })
-        this.setState({expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek} `})
+        this.setState({ correctAnswers: this.state.correctAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q1: ${selectedDay}` })
+        this.setState({expectedResponse:`${this.state.expectedResponse} A1: ${data.dayOfWeek} `})
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q1: ${selectedDay}`})
-        this.setState({expected_response:`${this.state.expected_response} A1: ${data.dayOfWeek}`  })
+        this.setState({ wrongAnswers: this.state.wrongAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q1: ${selectedDay}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A1: ${data.dayOfWeek}`  })
       }
 
     }
@@ -372,13 +372,13 @@ private createListItem = async () => {
     try {
       const data = await timeProxyCall(this.props.context,fullUrl);
       if (parseInt(data.day) === parseInt(selectedDay)) {
-        this.setState({ correct_answers: this.state.correct_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
-        this.setState({expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ correctAnswers: this.state.correctAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A3: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
-        this.setState({expected_response:`${this.state.expected_response} A3: ${parseInt(data.day)} with selectedDate ${birthday}` });
+        this.setState({ wrongAnswers: this.state.wrongAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q3: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A3: ${parseInt(data.day)} with selectedDate ${birthday}` });
       }
     } catch (error) {
       console.error('Error fetching time:2', error);
@@ -397,13 +397,13 @@ private createListItem = async () => {
       const data = await timeProxyCall(this.props.context,fullUrl);
 
       if ((YEAR_DAY_COUNT - parseInt(data.day)) == parseInt(selectedDay)) {
-        this.setState({ correct_answers: this.state.correct_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
-        this.setState({expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ correctAnswers: this.state.correctAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       } else {
-        this.setState({ wrong_answers: this.state.wrong_answers + 1})
-        this.setState({user_responses:`${this.state.user_responses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
-        this.setState({expected_response:`${this.state.expected_response} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
+        this.setState({ wrongAnswers: this.state.wrongAnswers + 1})
+        this.setState({userResponses:`${this.state.userResponses} Q4: ${selectedDay} with SelectedDate ${birthday}`})
+        this.setState({expectedResponse:`${this.state.expectedResponse} A4: ${parseInt(data.day)} with selectedDate ${birthday}`  });
       }
     }
     catch (error: any) {
